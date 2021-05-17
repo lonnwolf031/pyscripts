@@ -10,7 +10,17 @@ with open("kaarten_regrouped.svg", "r") as file:
     #bs_content = bs(content, "lxml")
     soup = BeautifulSoup(content, 'xml')
     svgfile = soup.find('svg')
-    groups = svgfile.findChildren('g')
+    #groups = svgfile.findChildren('g')
+    singlecard = svgfile.findChildren('g')
+
+    for thing in svggroups:
+        new_svg = soup.new_tag("svg")
+        new_svg['xmlns'] = "http://www.w3.org/2000/svg"
+        thing.insert_before(new_svg)
+    # make this svg parent tag
+
+    # add attribute   xmlns="http://www.w3.org/2000/svg"
+    # each thing.insert_before(new_div)
     print(groups)
 
 
